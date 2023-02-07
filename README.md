@@ -16,7 +16,7 @@ GCF_019654935.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,S
 GCF_019655395.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23
 ```
 
-## Quickstart:
+## Run the Workflow:
 
 ### Install Snakemake if needed
 
@@ -31,13 +31,13 @@ This activates an isolated conda/mamba environment with Snakemake installed. Whe
 to return to your base environment, run `conda deactivate` or close your terminal.
 
 > If you don't have `mamba`:
-  - If you have `conda`, use conda instead to install: `conda env create -f environment.yml`
-  - If not, you can install mamba (with conda) by following instructions [here](https://mamba.readthedocs.io/en/latest/installation.html#installation).
+>  - If you have `conda`, substitute with conda: `conda env create -f environment.yml`
+>  - If not, you can install mamba (with conda) by following instructions [here](https://mamba.readthedocs.io/en/latest/installation.html#installation).
 
 
 ### Test the workflow
 
-Run the test workflow:
+Execute the test:
 
 ```snakemake -c1```
 
@@ -49,20 +49,17 @@ will download all of the necessary support files, including NCBI taxonomy files.
 
 ### Build NCBI lineages file for each domain
 
-The script can automatically build lineages for each of the following domains:
-  - 'archaea',
-  - 'fungi',
-  - 'protozoa',
-  - 'bacteria',
-  - 'viral'
+The full workflow will build lineages files for the following domains: `archaea`, `fungi`, `protozoa`, `bacteria`, `viral`
+
+Run:
 
 ```snakemake all -c1``` 
 
-This will generate a lineages file per domain, e.g. `bacteria.lineages.csv`.
-The workflow will download all of the necessary support files, including `{domain}.assembly_summary.txt`
-and NCBI taxonomy files.
+This will generate one lineages file per domain, e.g. `bacteria.lineages.csv`.
+The workflow will download the required `{domain}.assembly_summary.txt` files.
+(and NCBI taxonomy files, if not download as part of testing, above).
 
-> Note, if you want to build a single lineages file for all domains at once, use `snakemake combined -c1`.
+> Note, if you want to build a combined lineages file for all domains, use `snakemake combined -c1`.
 
 Code based on https://github.com/dib-lab/2018-ncbi-lineages and https://github.com/ctb/2022-assembly-summary-to-lineages.
 
