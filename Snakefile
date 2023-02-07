@@ -9,8 +9,15 @@ rule demo:
         "example.lineages.csv"
 
 rule all:
+    message: "Produce a taxonomic lineages file for each domain"
     input:
         expand("{domain}.lineages.csv", domain=DOMAINS)
+
+rule combined:
+    message: "Produce a single taxonomic lineages file for all domains"
+    input:
+        expand("genbank.lineages.csv")
+
 
 rule download_taxdump:
     output:
@@ -27,6 +34,20 @@ rule download_assembly_summary:
         link=lambda w: f"https://ftp.ncbi.nlm.nih.gov/genomes/refseq/{w.name}/assembly_summary.txt"
     shell:
         "curl -L {params.link} -o {output}"
+
+
+rule combine_assembly_summaries:
+    input:
+        expand("{domain}.assembly_summary.txt", domain=DOMAINS)
+    output:
+        "genbank.assembly_summary.txt"
+    shell:
+        """
+        cat {input} > {output}
+        """
+        # we could be cleaner about this to keep just one header, e.g.:
+        #head -n 2 {input[0]} > {output}
+	#tail -n +3 -q {input} >> {output}
 
 
 rule make_lineage_csv:

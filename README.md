@@ -47,7 +47,7 @@ on the input file `example.assembly_summary.txt`.  Note that snakemake
 will download all of the necessary support files, including NCBI taxonomy files.
 
 
-### Build all NCBI lineages
+### Build NCBI lineages file for each domain
 
 The script can automatically build lineages for each of the following domains:
   - 'archaea',
@@ -61,6 +61,8 @@ The script can automatically build lineages for each of the following domains:
 This will generate a lineages file per domain, e.g. `bacteria.lineages.csv`.
 The workflow will download all of the necessary support files, including `{domain}.assembly_summary.txt`
 and NCBI taxonomy files.
+
+> Note, if you want to build a single lineages file for all domains at once, use `snakemake combined -c1`.
 
 Code based on https://github.com/dib-lab/2018-ncbi-lineages and https://github.com/ctb/2022-assembly-summary-to-lineages.
 
