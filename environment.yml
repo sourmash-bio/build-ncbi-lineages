@@ -1,0 +1,7 @@
+name: build-ncbi-lineages
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - snakemake=7.21.0

@@ -1,28 +1,67 @@
-# Extracting taxonomic lineages from NCBI based on assembly_summary files
+# Build NCBI Lineages
+
+Extract taxonomic lineages from NCBI based on assembly_summary files
 
 This tool is used to create files for use with `sourmash tax` and
-`sourmash lca index`, for taxonomic summaries.  The tool starts by
-taking in an [assembly summary](https://ftp.ncbi.nlm.nih.gov/genomes/README_assembly_summary.txt) file, and ends with an output file
-format like so:
+`sourmash lca index`, for taxonomic summaries.  It ingests
+[assembly summary](https://ftp.ncbi.nlm.nih.gov/genomes/README_assembly_summary.txt)
+files, and produces output file(s) formatted like so:
 
 ```
-accession,taxid,superkingdom,phylum,class,order,family,genus,species,strain
-AAAC01000001,191218,Bacteria,Firmicutes,Bacilli,Bacillales,Bacillaceae,Bacillus,Bacillus anthracis,
-AABL01000001,73239,Eukaryota,Apicomplexa,Aconoidasida,Haemosporida,Plasmodiidae,Plasmodium,Plasmodium yoelii,
-AABT01000001,285217,Eukaryota,Ascomycota,Eurotiomycetes,Eurotiales,Aspergillaceae,Aspergillus,Aspergillus terreus,
-AABF01000001,209882,Bacteria,Fusobacteria,Fusobacteriia,Fusobacteriales,Fusobacteriaceae,Fusobacterium,Fusobacterium nucleatum,
+ident,taxid,superkingdom,phylum,class,order,family,genus,species,strain,taxpath
+GCF_900128725.1,9,Bacteria,Pseudomonadota,Gammaproteobacteria,Enterobacterales,Erwiniaceae,Buchnera,Buchnera aphidicola,,2|1224|1236|91347|1903409|32199|9
+GCF_008244535.1,14,Bacteria,Dictyoglomi,Dictyoglomia,Dictyoglomales,Dictyoglomaceae,Dictyoglomus,Dictyoglomus thermophilum,,2|68297|203486|203487|203488|13|14
+GCF_001735525.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23
+GCF_019654935.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23
+GCF_019655395.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23
 ```
 
-### Snakestart: a snakemake workflow
+## Quickstart:
 
-Install snakemake, and run it:
+### Install Snakemake if needed
 
-```snakemake```
+If you already have snakemake installed, you can skip this step.
+If not, you can install with [mamba](https://mamba.readthedocs.io/en/latest/) from this directory, with:
+```
+mamba env create -f environment.yml
+conda activate build-ncbi-lineages
+```
+
+This activates an isolated conda/mamba environment with Snakemake installed. When you're finished running this and want
+to return to your base environment, run `conda deactivate` or close your terminal.
+
+> If you don't have `mamba`:
+  - If you have `conda`, use conda instead to install: `conda env create -f environment.yml`
+  - If not, you can install mamba (with conda) by following instructions [here](https://mamba.readthedocs.io/en/latest/installation.html#installation).
+
+
+### Test the workflow
+
+Run the test workflow:
+
+```snakemake -c1```
+
 
 This will generate an output file `example.lineages.csv` based
 on the input file `example.assembly_summary.txt`.  Note that snakemake
-will download all of the necessary support files too!
+will download all of the necessary support files, including NCBI taxonomy files.
 
-Code based on https://github.com/dib-lab/2018-ncbi-lineages.
 
-CTB 20.4.2022
+### Build all NCBI lineages
+
+The script can automatically build lineages for each of the following domains:
+  - 'archaea',
+  - 'fungi',
+  - 'protozoa',
+  - 'bacteria',
+  - 'viral'
+
+```snakemake all -c1``` 
+
+This will generate a lineages file per domain, e.g. `bacteria.lineages.csv`.
+The workflow will download all of the necessary support files, including `{domain}.assembly_summary.txt`
+and NCBI taxonomy files.
+
+Code based on https://github.com/dib-lab/2018-ncbi-lineages and https://github.com/ctb/2022-assembly-summary-to-lineages.
+
+2023-02-07 NTP, CTB
