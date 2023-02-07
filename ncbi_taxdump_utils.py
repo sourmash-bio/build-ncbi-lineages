@@ -184,6 +184,7 @@ class NCBI_TaxonomyFoo(object):
         taxid = int(taxid)
 
         lineage = {}
+        taxpath = []
         while 1:
             if taxid not in self.node_to_info:
                 print('cannot find taxid {}; quitting.'.format(taxid))
@@ -196,11 +197,12 @@ class NCBI_TaxonomyFoo(object):
                 rank = 'strain'
             if not want_taxonomy or rank in want_taxonomy:
                 lineage[rank] = name
+                taxpath = [taxid] + taxpath # prepend taxid for this rank
             taxid = self.get_taxid_parent(taxid)
             if taxid == 1:
                 break
 
-        return lineage
+        return lineage, taxpath
 
     def get_lowest_lineage(self, taxids, want_taxonomy):
         """\
