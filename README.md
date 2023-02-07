@@ -56,7 +56,7 @@ Run:
 ```snakemake all -c1``` 
 
 This will generate one lineages file per domain, e.g. `bacteria.lineages.csv`.
-The workflow will download the required `{domain}.assembly_summary.txt` files.
+The workflow will download the required `{domain}.assembly_summary.txt` files
 (and NCBI taxonomy files, if not download as part of testing, above).
 
 > Note, if you want to build a combined lineages file for all domains, use `snakemake combined -c1`.
