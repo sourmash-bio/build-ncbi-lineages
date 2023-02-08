@@ -9,11 +9,11 @@ files, and produces output file(s) formatted like so:
 
 ```
 ident,taxid,superkingdom,phylum,class,order,family,genus,species,strain,taxpath
-GCF_900128725.1,9,Bacteria,Pseudomonadota,Gammaproteobacteria,Enterobacterales,Erwiniaceae,Buchnera,Buchnera aphidicola,,2|1224|1236|91347|1903409|32199|9
-GCF_008244535.1,14,Bacteria,Dictyoglomi,Dictyoglomia,Dictyoglomales,Dictyoglomaceae,Dictyoglomus,Dictyoglomus thermophilum,,2|68297|203486|203487|203488|13|14
-GCF_001735525.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23
-GCF_019654935.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23
-GCF_019655395.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23
+GCF_900128725.1,9,Bacteria,Pseudomonadota,Gammaproteobacteria,Enterobacterales,Erwiniaceae,Buchnera,Buchnera aphidicola,,2|1224|1236|91347|1903409|32199|9|
+GCF_008244535.1,14,Bacteria,Dictyoglomi,Dictyoglomia,Dictyoglomales,Dictyoglomaceae,Dictyoglomus,Dictyoglomus thermophilum,,2|68297|203486|203487|203488|13|14|
+GCF_001735525.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23|
+GCF_019654935.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23|
+GCF_019655395.1,23,Bacteria,Pseudomonadota,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,Shewanella colwelliana,,2|1224|1236|135622|267890|22|23|
 ```
 
 ## Run the Workflow:
