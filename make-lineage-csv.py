@@ -45,14 +45,16 @@ def main():
             taxid = row[5]
             taxid = int(taxid)
 
-            lin_dict, taxpath = taxfoo.get_lineage_as_dict(taxid, want_taxonomy)
+            lin_dict = taxfoo.get_lineage_as_dict(taxid, want_taxonomy)
             if not lin_dict:
                 print(f"WARNING: taxid {taxid} not in taxdump files. Producing empty lineage.")
                 
             row = [acc, taxid]
+            taxpath=[]
             for rank in want_taxonomy:
-                name = lin_dict.get(rank, '')
+                name, taxid = lin_dict.get(rank, ('', ''))
                 row.append(name)
+                taxpath.append(taxid)
 
             tp = "|".join(map(str, taxpath))
             row.append(tp)

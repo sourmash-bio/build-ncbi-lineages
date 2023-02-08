@@ -196,13 +196,12 @@ class NCBI_TaxonomyFoo(object):
             if self.is_strain(taxid): # NCBI reports strain as 'no rank'...
                 rank = 'strain'
             if not want_taxonomy or rank in want_taxonomy:
-                lineage[rank] = name
-                taxpath = [taxid] + taxpath # prepend taxid for this rank
+                lineage[rank] = (name, taxid)
             taxid = self.get_taxid_parent(taxid)
             if taxid == 1:
                 break
 
-        return lineage, taxpath
+        return lineage
 
     def get_lowest_lineage(self, taxids, want_taxonomy):
         """\
